@@ -1,0 +1,54 @@
+// Program to find all prime numbers in a given range
+#include <iostream>
+#include <cmath>
+#include <limits>
+
+using namespace std;
+
+// Function to check if a number is prime
+bool isPrime(int num) {
+    if (num < 2) return false; // 0, 1, and negatives are not prime
+    if (num == 2 || num == 3) return true; // 2 and 3 are prime
+    if (num % 2 == 0) return false; // Even numbers > 2 are not prime
+
+    // Check divisibility up to sqrt(num)
+    int limit = static_cast<int>(sqrt(num));
+    for (int i = 3; i <= limit; i += 2) {
+        if (num % i == 0) return false;
+    }
+    return true;
+}
+
+int main() {
+    int start, end;
+
+    cout << "Enter start and end of range: ";
+
+    // Input validation
+    if (!(cin >> start >> end)) {
+        cout << "Invalid input. Please enter integers only.\n";
+        return 1;
+    }
+
+    // Swap if start > end
+    if (start > end) {
+        swap(start, end);
+    }
+
+    cout << "Prime numbers between " << start << " and " << end << " are:\n";
+
+    bool found = false;
+    for (int num = start; num <= end; ++num) {
+        if (isPrime(num)) {
+            cout << num << " ";
+            found = true;
+        }
+    }
+
+    if (!found) {
+        cout << "No prime numbers found in this range.";
+    }
+
+    cout << endl;
+    return 0;
+}
