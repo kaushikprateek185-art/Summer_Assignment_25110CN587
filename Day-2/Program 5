@@ -1,0 +1,34 @@
+// Program to calculate the sum of digits of an integer
+#include <iostream>
+#include <limits> // For numeric_limits
+#include <cstdlib> // For abs()
+
+using namespace std;
+
+// Function to calculate sum of digits
+int sumOfDigits(int num) {
+    num = abs(num); // Handle negative numbers
+    int sum = 0;
+    while (num > 0) {
+        sum += num % 10; // Add last digit
+        num /= 10;       // Remove last digit
+    }
+    return sum;
+}
+
+int main() {
+    int number;
+
+    cout << "Enter an integer: ";
+
+    // Input validation
+    if (!(cin >> number)) {
+        cout << "Invalid input. Please enter an integer only." << endl;
+        return 1;
+    }
+
+    int result = sumOfDigits(number);
+    cout << "Sum of digits of " << number << " is: " << result << endl;
+
+    return 0;
+}

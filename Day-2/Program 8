@@ -1,0 +1,44 @@
+// Program to check if a number is a palindrome
+#include <iostream>
+#include <limits> // For numeric_limits
+using namespace std;
+
+// Function to check if a number is palindrome
+bool isPalindrome(int num) {
+    if (num < 0) {
+        return false; // Negative numbers are not palindromes
+    }
+
+    int original = num;
+    long reversed = 0; // Use long to avoid overflow for large numbers
+
+    while (num != 0) {
+        int digit = num % 10;
+        reversed = reversed * 10 + digit;
+        num /= 10;
+    }
+
+    return original == reversed;
+}
+
+int main() {
+    int number;
+
+    cout << "Enter an integer: ";
+
+    // Input validation
+    while (!(cin >> number)) {
+        cout << "Invalid input. Please enter an integer: ";
+        cin.clear(); // Clear error flag
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
+    }
+
+    // Check palindrome
+    if (isPalindrome(number)) {
+        cout << number << " is a palindrome." << endl;
+    } else {
+        cout << number << " is not a palindrome." << endl;
+    }
+
+    return 0;
+}
