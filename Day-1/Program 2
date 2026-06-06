@@ -1,0 +1,26 @@
+// Program to print the multiplication table of a given number
+#include <iostream>
+#include <limits> // For numeric_limits
+using namespace std;
+
+int main() {
+    int number;
+
+    // Prompt user for input
+    cout << "Enter an integer to print its multiplication table: ";
+
+    // Input validation
+    while (!(cin >> number)) {
+        cout << "Invalid input. Please enter an integer: ";
+        cin.clear(); // Clear error flag
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
+    }
+
+    // Print multiplication table from 1 to 10
+    cout << "\nMultiplication Table of " << number << ":\n";
+    for (int i = 1; i <= 10; ++i) {
+        cout << number << " x " << i << " = " << number * i << "\n";
+    }
+
+    return 0;
+}

@@ -1,0 +1,40 @@
+// Program to calculate the factorial of a given number
+#include <iostream>
+#include <limits> // For numeric_limits
+using namespace std;
+
+// Function to calculate factorial iteratively
+unsigned long long factorial(unsigned int n) {
+    unsigned long long result = 1;
+    for (unsigned int i = 1; i <= n; ++i) {
+        result *= i;
+    }
+    return result;
+}
+
+int main() {
+    int num;
+
+    cout << "Enter a non-negative integer: ";
+
+    // Input validation
+    if (!(cin >> num)) {
+        cout << "Invalid input. Please enter an integer.\n";
+        return 1;
+    }
+
+    if (num < 0) {
+        cout << "Factorial is not defined for negative numbers.\n";
+        return 1;
+    }
+
+    // Warning for very large numbers (possible overflow)
+    if (num > 20) {
+        cout << "Warning: Factorial of numbers greater than 20 may overflow 64-bit storage.\n";
+    }
+
+    // Calculate and display factorial
+    cout << "Factorial of " << num << " is: " << factorial(num) << endl;
+
+    return 0;
+}

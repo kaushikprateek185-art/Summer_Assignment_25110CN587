@@ -1,0 +1,28 @@
+// Program to calculate the sum of the first n natural numbers
+#include <iostream>
+#include <limits> // For numeric_limits
+using namespace std;
+
+int main() {
+    long long n; // Use long long to handle large values
+
+    cout << "Enter a positive integer n: ";
+
+    // Input validation
+    if (!(cin >> n)) {
+        cout << "Invalid input. Please enter a positive integer.\n";
+        return 1;
+    }
+
+    if (n <= 0) {
+        cout << "n must be a positive integer greater than 0.\n";
+        return 1;
+    }
+
+    // Calculate sum using formula
+    long long sum = n * (n + 1) / 2;
+
+    cout << "Sum of first " << n << " natural numbers is: " << sum << endl;
+
+    return 0;
+}
