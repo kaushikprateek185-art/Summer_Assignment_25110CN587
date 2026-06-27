@@ -1,0 +1,41 @@
+#include <iostream>
+#include <limits> // For numeric_limits
+using namespace std;
+
+// Function to find the nth Fibonacci number iteratively
+unsigned long long fibonacci(int n) {
+    if (n == 0) return 0; // Base case
+    if (n == 1) return 1; // Base case
+
+    unsigned long long prev = 0, curr = 1, next;
+    for (int i = 2; i <= n; ++i) {
+        next = prev + curr;
+        prev = curr;
+        curr = next;
+    }
+    return curr;
+}
+
+int main() {
+    int n;
+
+    cout << "Enter the term number (n >= 0): ";
+
+    // Input validation
+    if (!(cin >> n) || n < 0) {
+        cerr << "Invalid input. Please enter a non-negative integer.\n";
+        return 1;
+    }
+
+    // Prevent overflow warning for very large n
+    if (n > 93) { 
+        // Fibonacci(94) exceeds unsigned long long limit
+        cerr << "Value too large. Maximum n allowed is 93 for 64-bit unsigned integers.\n";
+        return 1;
+    }
+
+    unsigned long long result = fibonacci(n);
+    cout << "Fibonacci term F(" << n << ") = " << result << "\n";
+
+    return 0;
+}

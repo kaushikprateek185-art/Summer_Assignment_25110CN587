@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+
+int main() {
+    int n, d;
+    std::cout << "Enter number of elements: ";
+    std::cin >> n;
+    if (n <= 0) {
+        return 0;
+    }
+
+    std::vector<int> arr(n);
+    std::cout << "Enter " << n << " elements:\n";
+    for (int i = 0; i < n; ++i) {
+        std::cin >> arr[i];
+    }
+
+    std::cout << "Enter number of positions to rotate left: ";
+    std::cin >> d;
+    d = d % n;
+    if (d < 0) {
+        d += n;
+    }
+
+    std::vector<int> rotated(n);
+    for (int i = 0; i < n; ++i) {
+        rotated[i] = arr[(i + d) % n];
+    }
+
+    std::cout << "Array after left rotation:\n";
+    for (int i = 0; i < n; ++i) {
+        std::cout << rotated[i] << " ";
+    }
+    std::cout << std::endl;
+    return 0;
+}

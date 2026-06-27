@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+
+// Function to calculate x^n without using pow()
+double power(double x, int n) {
+    double result = 1;
+    bool negativeExponent = false;
+
+    // Handle negative powers
+    if (n < 0) {
+        negativeExponent = true;
+        n = -n;  // Make exponent positive for calculation
+    }
+
+    while (n > 0) {
+        // If n is odd, multiply result by x
+        if (n % 2 == 1) {
+            result *= x;
+        }
+        x *= x;      // Square the base
+        n /= 2;      // Divide exponent by 2
+    }
+
+    // If the original exponent was negative, take reciprocal
+    if (negativeExponent) {
+        result = 1 / result;
+    }
+
+    return result;
+}
+
+int main() {
+    double x;
+    int n;
+    
+    cout << "Enter the base (x): ";
+    cin >> x;
+    cout << "Enter the exponent (n): ";
+    cin >> n;
+
+    double result = power(x, n);
+    cout << x << "^" << n << " = " << result << endl;
+
+    return 0;
+}

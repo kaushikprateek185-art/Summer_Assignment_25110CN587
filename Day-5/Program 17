@@ -1,0 +1,42 @@
+#include <iostream>
+#include <limits> // For numeric_limits
+using namespace std;
+
+// Function to check if a number is perfect
+bool isPerfectNumber(int num) {
+    if (num <= 0) return false; // Perfect numbers are positive integers
+
+    int sum = 0;
+    // Loop to find divisors up to num/2
+    for (int i = 1; i <= num / 2; ++i) {
+        if (num % i == 0) {
+            sum += i;
+        }
+    }
+    return sum == num;
+}
+
+int main() {
+    int number;
+
+    cout << "Enter a positive integer: ";
+    // Input validation
+    if (!(cin >> number)) {
+        cout << "Invalid input. Please enter an integer.\n";
+        return 1;
+    }
+
+    if (number <= 0) {
+        cout << "Perfect numbers must be positive integers.\n";
+        return 1;
+    }
+
+    // Check and display result
+    if (isPerfectNumber(number)) {
+        cout << number << " is a Perfect Number.\n";
+    } else {
+        cout << number << " is NOT a Perfect Number.\n";
+    }
+
+    return 0;
+}

@@ -1,0 +1,42 @@
+#include <iostream>
+#include <limits> // For numeric_limits
+using namespace std;
+
+// Function to generate Fibonacci series
+void generateFibonacci(int n) {
+    long long first = 0, second = 1;
+
+    cout << "Fibonacci Series: ";
+
+    if (n >= 1) cout << first;
+    if (n >= 2) cout << " " << second;
+
+    for (int i = 3; i <= n; ++i) {
+        long long next = first + second;
+        cout << " " << next;
+        first = second;
+        second = next;
+    }
+    cout << endl;
+}
+
+int main() {
+    int n;
+
+    cout << "Enter the number of terms: ";
+
+    // Input validation
+    while (!(cin >> n) || n < 0) {
+        cout << "Invalid input. Please enter a non-negative integer: ";
+        cin.clear(); // Clear error flag
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
+    }
+
+    if (n == 0) {
+        cout << "No terms to display." << endl;
+    } else {
+        generateFibonacci(n);
+    }
+
+    return 0;
+}

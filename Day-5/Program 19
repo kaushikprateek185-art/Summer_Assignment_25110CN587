@@ -1,0 +1,41 @@
+#include <iostream>
+#include <cmath>    // For sqrt()
+#include <cstdlib>  // For abs()
+
+using namespace std;
+
+// Function to print all factors of a number
+void printFactors(int n) {
+    if (n == 0) {
+        cout << "Every non-zero integer is a factor of 0." << endl;
+        return;
+    }
+
+    int num = abs(n); // Factors are usually considered for positive numbers
+    cout << "Factors of " << n << " are: ";
+
+    // Loop only till sqrt(num) to optimize
+    for (int i = 1; i <= sqrt(num); i++) {
+        if (num % i == 0) {
+            cout << i << " "; // First factor
+            if (i != num / i) {
+                cout << num / i << " "; // Corresponding pair factor
+            }
+        }
+    }
+    cout << endl;
+}
+
+int main() {
+    int number;
+
+    cout << "Enter an integer: ";
+    if (!(cin >> number)) { // Input validation
+        cout << "Invalid input. Please enter an integer." << endl;
+        return 1;
+    }
+
+    printFactors(number);
+
+    return 0;
+}

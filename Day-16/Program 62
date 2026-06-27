@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    if (!(cin >> n))
+        return 0;
+
+    vector<int> a(n);
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+
+    unordered_map<int, int> freq;
+    int maxCount = 0;
+    int maxElem = 0;
+
+    for (int x : a) {
+        int count = ++freq[x];
+        if (count > maxCount || (count == maxCount && x < maxElem)) {
+            maxCount = count;
+            maxElem = x;
+        }
+    }
+
+    cout << maxElem;
+    return 0;
+}

@@ -1,0 +1,40 @@
+#include <iostream>
+#include <vector>
+#include <set>
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Enter size of array: ";
+    cin >> n;
+
+    vector<int> arr(n);
+    cout << "Enter array elements: ";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    set<int> seen;
+    set<int> duplicates;
+
+    for (int x : arr) {
+        if (seen.count(x)) {
+            duplicates.insert(x);
+        } else {
+            seen.insert(x);
+        }
+    }
+
+    cout << "Duplicate elements are: ";
+    if (duplicates.empty()) {
+        cout << "None";
+    } else {
+        for (int x : duplicates) {
+            cout << x << " ";
+        }
+    }
+    cout << endl;
+
+    return 0;
+}
+
