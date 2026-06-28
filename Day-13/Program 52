@@ -1,3 +1,4 @@
+// Program to count even and odd elements in an array
 #include <iostream>
 using namespace std;
 

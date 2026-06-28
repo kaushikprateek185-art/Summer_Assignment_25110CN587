@@ -1,1 +1,14 @@
-#include <iostream>=
+// Program to find sum of two numbers using function
+#include <iostream>
+int findsum(int num1, int num2){
+    return num1 + num2;
+}
+int main(){
+    int a,b;
+    std::cout << "Enter two numbers:";
+    std::cin >> a >> b;
+    int sum = findsum(a,b);
+    std::cout << "The sum of " <<a << " and" <<b<<"is:"<< sum<<std ::endl;
+    return 0;
+}
+   

@@ -1,3 +1,4 @@
+// Program to find the missing number in an array of size n-1 containing numbers from 1 to n
 #include <iostream>
 #include <vector>
 using namespace std;

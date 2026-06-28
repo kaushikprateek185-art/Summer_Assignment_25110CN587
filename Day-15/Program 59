@@ -1,3 +1,4 @@
+// Program to rotate an array by d positions
 #include <iostream>
 #include <vector>
 

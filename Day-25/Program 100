@@ -1,0 +1,33 @@
+// This program sorts the words in a sentence entered by the user based on their lengths and displays the sorted list of words along with their lengths.
+#include <iostream>
+#include <sstream>   // for stringstream
+#include <vector>
+#include <algorithm> // for sort
+using namespace std;
+
+int main() {
+    string sentence;
+    cout << "Enter a sentence: ";
+    getline(cin, sentence);
+
+    stringstream ss(sentence);
+    string word;
+    vector<string> words;
+
+    // Extract words from sentence
+    while (ss >> word) {
+        words.push_back(word);
+    }
+
+    // Sort words by length
+    sort(words.begin(), words.end(), [](const string &a, const string &b) {
+        return a.length() < b.length();
+    });
+
+    cout << "\nWords sorted by length:\n";
+    for (string w : words) {
+        cout << w << " (length " << w.length() << ")" << endl;
+    }
+
+    return 0;
+}

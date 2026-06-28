@@ -1,3 +1,4 @@
+// Program to take input of an array and calculate sum and average
 #include <iostream>
 #include <vector>
 using namespace std;
