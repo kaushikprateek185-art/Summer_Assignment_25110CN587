@@ -1,0 +1,21 @@
+// This program converts a string entered by the user from lowercase to uppercase and displays the result.
+#include <iostream>
+using namespace std;
+
+int main() {
+    char str[100];
+
+    cout << "Enter a string in lowercase: ";
+    cin.getline(str, 100);
+
+    // Convert each character to uppercase
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] >= 'a' && str[i] <= 'z') {
+            str[i] = str[i] - 32; // ASCII difference between lowercase and uppercase
+        }
+    }
+
+    cout << "Uppercase string: " << str << endl;
+
+    return 0;
+}

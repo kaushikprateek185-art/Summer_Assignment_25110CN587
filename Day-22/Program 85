@@ -1,0 +1,33 @@
+// This program checks whether a string entered by the user is a palindrome or not and displays the result.
+#include <iostream>
+using namespace std;
+
+int main() {
+    char str[100];
+    cout << "Enter a string: ";
+    cin.getline(str, 100);
+
+    int length = 0;
+
+    // Find length manually
+    while (str[length] != '\0') {
+        length++;
+    }
+
+    bool isPalindrome = true;
+
+    // Check characters from both ends
+    for (int i = 0; i < length / 2; i++) {
+        if (str[i] != str[length - i - 1]) {
+            isPalindrome = false;
+            break;
+        }
+    }
+
+    if (isPalindrome)
+        cout << "The string is a palindrome." << endl;
+    else
+        cout << "The string is not a palindrome." << endl;
+
+    return 0;
+}

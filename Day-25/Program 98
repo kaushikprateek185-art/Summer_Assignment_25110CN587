@@ -1,0 +1,40 @@
+// This program finds the common characters between two strings entered by the user and displays the result.
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string str1, str2;
+    bool freq1[256] = {false};
+    bool freq2[256] = {false};
+
+    cout << "Enter first string: ";
+    getline(cin, str1);
+    cout << "Enter second string: ";
+    getline(cin, str2);
+
+    // Mark characters present in str1
+    for (char ch : str1) {
+        freq1[(unsigned char)ch] = true;
+    }
+
+    // Mark characters present in str2
+    for (char ch : str2) {
+        freq2[(unsigned char)ch] = true;
+    }
+
+    cout << "Common characters: ";
+    bool found = false;
+    for (int i = 0; i < 256; i++) {
+        if (freq1[i] && freq2[i]) {
+            cout << (char)i << " ";
+            found = true;
+        }
+    }
+
+    if (!found)
+        cout << "None";
+
+    cout << endl;
+    return 0;
+}

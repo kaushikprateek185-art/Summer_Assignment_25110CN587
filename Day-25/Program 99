@@ -1,0 +1,29 @@
+// This program sorts a list of names entered by the user in alphabetical order and displays the sorted list.
+#include <iostream>
+#include <string>
+#include <algorithm> // for sort
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Enter number of names: ";
+    cin >> n;
+    cin.ignore(); // clear newline from input buffer
+
+    string names[100]; // assuming max 100 names
+
+    cout << "Enter the names:\n";
+    for (int i = 0; i < n; i++) {
+        getline(cin, names[i]);
+    }
+
+    // Sort names alphabetically
+    sort(names, names + n);
+
+    cout << "\nNames in alphabetical order:\n";
+    for (int i = 0; i < n; i++) {
+        cout << names[i] << endl;
+    }
+
+    return 0;
+}

@@ -1,0 +1,25 @@
+// This program removes all spaces from a string entered by the user and displays the result.
+#include <iostream>
+using namespace std;
+
+int main() {
+    char str[200];
+
+    cout << "Enter a string: ";
+    cin.getline(str, 200);
+
+    int j = 0; // index for new string
+
+    // Traverse and copy only non-space characters
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] != ' ') {
+            str[j++] = str[i];
+        }
+    }
+
+    str[j] = '\0'; // terminate the new string
+
+    cout << "String without spaces: " << str << endl;
+
+    return 0;
+}

@@ -1,0 +1,32 @@
+// This program checks whether one string is a rotation of another string entered by the user and displays the result.
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool isRotation(string str1, string str2) {
+    // If lengths differ, not a rotation
+    if (str1.length() != str2.length())
+        return false;
+
+    // Concatenate str1 with itself
+    string temp = str1 + str1;
+
+    // If str2 is a substring of temp, it's a rotation
+    return (temp.find(str2) != string::npos);
+}
+
+int main() {
+    string str1, str2;
+
+    cout << "Enter first string: ";
+    getline(cin, str1);
+    cout << "Enter second string: ";
+    getline(cin, str2);
+
+    if (isRotation(str1, str2))
+        cout << "The strings are rotations of each other." << endl;
+    else
+        cout << "The strings are not rotations of each other." << endl;
+
+    return 0;
+}

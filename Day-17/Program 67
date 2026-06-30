@@ -1,0 +1,47 @@
+// This program finds the union of two arrays and displays the unique elements.
+#include <iostream>
+#include <set>
+using namespace std;
+
+int main() {
+    int n1, n2;
+
+    // Input sizes of two arrays
+    cout << "Enter size of first array: ";
+    cin >> n1;
+    cout << "Enter size of second array: ";
+    cin >> n2;
+
+    int arr1[n1], arr2[n2];
+
+    // Input elements of first array
+    cout << "Enter elements of first array:\n";
+    for (int i = 0; i < n1; i++) {
+        cin >> arr1[i];
+    }
+
+    // Input elements of second array
+    cout << "Enter elements of second array:\n";
+    for (int i = 0; i < n2; i++) {
+        cin >> arr2[i];
+    }
+
+    // Store elements of first array in a set
+    set<int> set1(arr1, arr1 + n1);
+
+    // Find intersection
+    set<int> intersection;
+    for (int i = 0; i < n2; i++) {
+        if (set1.find(arr2[i]) != set1.end()) {
+            intersection.insert(arr2[i]);
+        }
+    }
+
+    // Display intersection of arrays
+    cout << "Intersection of arrays:\n";
+    for (int element : intersection) {
+        cout << element << " ";
+    }
+
+    return 0;
+}

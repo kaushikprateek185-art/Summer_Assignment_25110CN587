@@ -1,0 +1,29 @@
+// This program finds the first repeating character in a string entered by the user and displays the result.
+#include <iostream>
+using namespace std;
+
+int main() {
+    char str[200];
+    int freq[256] = {0}; // ASCII frequency array
+
+    cout << "Enter a string: ";
+    cin.getline(str, 200);
+
+    char firstRepeat = '\0';
+
+    // Traverse string and check frequency
+    for (int i = 0; str[i] != '\0'; i++) {
+        freq[(unsigned char)str[i]]++;
+        if (freq[(unsigned char)str[i]] == 2) { // found repeating
+            firstRepeat = str[i];
+            break;
+        }
+    }
+
+    if (firstRepeat != '\0')
+        cout << "First repeating character: " << firstRepeat << endl;
+    else
+        cout << "No repeating character found." << endl;
+
+    return 0;
+}

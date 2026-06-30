@@ -1,0 +1,36 @@
+// This program compresses a string entered by the user using the counts of repeated characters and displays the compressed string.
+#include <iostream>
+#include <string>
+using namespace std;
+
+string compressString(string str) {
+    string compressed = "";
+    int n = str.length();
+
+    for (int i = 0; i < n; i++) {
+        int count = 1;
+
+        // Count consecutive repeating characters
+        while (i < n - 1 && str[i] == str[i + 1]) {
+            count++;
+            i++;
+        }
+
+        compressed += str[i];          // add character
+        compressed += to_string(count); // add count
+    }
+
+    return compressed;
+}
+
+int main() {
+    string str;
+    cout << "Enter a string: ";
+    getline(cin, str);
+
+    string result = compressString(str);
+
+    cout << "Compressed string: " << result << endl;
+
+    return 0;
+}
