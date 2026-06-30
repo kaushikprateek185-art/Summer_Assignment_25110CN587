@@ -1,0 +1,106 @@
+// Contact Management System
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Contact {
+    int id;
+    string name;
+    string phone;
+    string email;
+};
+
+int main() {
+    Contact contacts[100]; // Array to store contacts
+    int count = 0;         // Number of contacts
+    int choice;
+
+    do {
+        cout << "\n===== Contact Management System =====" << endl;
+        cout << "1. Add Contact" << endl;
+        cout << "2. Display All Contacts" << endl;
+        cout << "3. Search Contact by ID" << endl;
+        cout << "4. Delete Contact" << endl;
+        cout << "5. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: {
+                cout << "\nEnter Contact ID: ";
+                cin >> contacts[count].id;
+                cout << "Enter Name: ";
+                cin.ignore();
+                getline(cin, contacts[count].name);
+                cout << "Enter Phone Number: ";
+                getline(cin, contacts[count].phone);
+                cout << "Enter Email: ";
+                getline(cin, contacts[count].email);
+                count++;
+                cout << "Contact added successfully!" << endl;
+                break;
+            }
+
+            case 2: {
+                cout << "\n===== All Contacts =====" << endl;
+                for (int i = 0; i < count; i++) {
+                    cout << "ID: " << contacts[i].id << endl;
+                    cout << "Name: " << contacts[i].name << endl;
+                    cout << "Phone: " << contacts[i].phone << endl;
+                    cout << "Email: " << contacts[i].email << endl;
+                    cout << "-----------------------------" << endl;
+                }
+                break;
+            }
+
+            case 3: {
+                int id;
+                cout << "\nEnter Contact ID to search: ";
+                cin >> id;
+                bool found = false;
+                for (int i = 0; i < count; i++) {
+                    if (contacts[i].id == id) {
+                        cout << "\nContact Found!" << endl;
+                        cout << "ID: " << contacts[i].id << endl;
+                        cout << "Name: " << contacts[i].name << endl;
+                        cout << "Phone: " << contacts[i].phone << endl;
+                        cout << "Email: " << contacts[i].email << endl;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) cout << "No contact found with ID " << id << endl;
+                break;
+            }
+
+            case 4: {
+                int id;
+                cout << "\nEnter Contact ID to delete: ";
+                cin >> id;
+                bool found = false;
+                for (int i = 0; i < count; i++) {
+                    if (contacts[i].id == id) {
+                        for (int j = i; j < count - 1; j++) {
+                            contacts[j] = contacts[j + 1]; // Shift records
+                        }
+                        count--;
+                        cout << "Contact deleted successfully!" << endl;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) cout << "No contact found with ID " << id << endl;
+                break;
+            }
+
+            case 5:
+                cout << "Exiting program. Goodbye!" << endl;
+                break;
+
+            default:
+                cout << "Invalid choice. Please try again." << endl;
+        }
+    } while (choice != 5);
+
+    return 0;
+}

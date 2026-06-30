@@ -1,0 +1,69 @@
+// Menu Driven String Operations
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string str;
+    int choice;
+
+    cout << "===== Menu Driven String Operations =====" << endl;
+    cout << "Enter a string: ";
+    getline(cin, str);
+
+    do {
+        cout << "\n1. Find Length" << endl;
+        cout << "2. Reverse String" << endl;
+        cout << "3. Check Palindrome" << endl;
+        cout << "4. Count Vowels and Consonants" << endl;
+        cout << "5. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: {
+                cout << "Length of string: " << str.length() << endl;
+                break;
+            }
+
+            case 2: {
+                string rev = string(str.rbegin(), str.rend());
+                cout << "Reversed string: " << rev << endl;
+                break;
+            }
+
+            case 3: {
+                string rev = string(str.rbegin(), str.rend());
+                if (str == rev)
+                    cout << "The string is a palindrome." << endl;
+                else
+                    cout << "The string is not a palindrome." << endl;
+                break;
+            }
+
+            case 4: {
+                int vowels = 0, consonants = 0;
+                for (char c : str) {
+                    c = tolower(c);
+                    if (isalpha(c)) {
+                        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
+                            vowels++;
+                        else
+                            consonants++;
+                    }
+                }
+                cout << "Vowels: " << vowels << ", Consonants: " << consonants << endl;
+                break;
+            }
+
+            case 5:
+                cout << "Exiting program. Goodbye!" << endl;
+                break;
+
+            default:
+                cout << "Invalid choice. Please try again." << endl;
+        }
+    } while (choice != 5);
+
+    return 0;
+}

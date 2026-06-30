@@ -1,0 +1,106 @@
+// ticket booking system
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Ticket {
+    int ticketId;
+    string passengerName;
+    string destination;
+    bool booked;
+};
+
+int main() {
+    Ticket tickets[100]; // Array to store tickets
+    int count = 0;       // Number of tickets booked
+    int choice;
+
+    do {
+        cout << "\n===== Ticket Booking System =====" << endl;
+        cout << "1. Book Ticket" << endl;
+        cout << "2. Display All Tickets" << endl;
+        cout << "3. Search Ticket by ID" << endl;
+        cout << "4. Cancel Ticket" << endl;
+        cout << "5. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: {
+                cout << "\nEnter Ticket ID: ";
+                cin >> tickets[count].ticketId;
+                cout << "Enter Passenger Name: ";
+                cin.ignore();
+                getline(cin, tickets[count].passengerName);
+                cout << "Enter Destination: ";
+                getline(cin, tickets[count].destination);
+                tickets[count].booked = true;
+                count++;
+                cout << "Ticket booked successfully!" << endl;
+                break;
+            }
+
+            case 2: {
+                cout << "\n===== All Tickets =====" << endl;
+                for (int i = 0; i < count; i++) {
+                    cout << "Ticket ID: " << tickets[i].ticketId << endl;
+                    cout << "Passenger Name: " << tickets[i].passengerName << endl;
+                    cout << "Destination: " << tickets[i].destination << endl;
+                    cout << "Status: " << (tickets[i].booked ? "Booked" : "Cancelled") << endl;
+                    cout << "-----------------------------" << endl;
+                }
+                break;
+            }
+
+            case 3: {
+                int id;
+                cout << "\nEnter Ticket ID to search: ";
+                cin >> id;
+                bool found = false;
+                for (int i = 0; i < count; i++) {
+                    if (tickets[i].ticketId == id) {
+                        cout << "\nTicket Found!" << endl;
+                        cout << "Ticket ID: " << tickets[i].ticketId << endl;
+                        cout << "Passenger Name: " << tickets[i].passengerName << endl;
+                        cout << "Destination: " << tickets[i].destination << endl;
+                        cout << "Status: " << (tickets[i].booked ? "Booked" : "Cancelled") << endl;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) cout << "No ticket found with ID " << id << endl;
+                break;
+            }
+
+            case 4: {
+                int id;
+                cout << "\nEnter Ticket ID to cancel: ";
+                cin >> id;
+                bool found = false;
+                for (int i = 0; i < count; i++) {
+                    if (tickets[i].ticketId == id) {
+                        if (tickets[i].booked) {
+                            tickets[i].booked = false;
+                            cout << "Ticket cancelled successfully!" << endl;
+                        } else {
+                            cout << "Ticket is already cancelled." << endl;
+                        }
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) cout << "No ticket found with ID " << id << endl;
+                break;
+            }
+
+            case 5:
+                cout << "Exiting program. Goodbye!" << endl;
+                break;
+
+            default:
+                cout << "Invalid choice. Please try again." << endl;
+        }
+    } while (choice != 5);
+
+    return 0;
+}

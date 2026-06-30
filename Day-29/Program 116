@@ -1,0 +1,126 @@
+// Inventory Management System
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Item {
+    int id;
+    string name;
+    int quantity;
+    double price;
+};
+
+int main() {
+    Item inventory[100]; // Array to store items
+    int count = 0;       // Number of items
+    int choice;
+
+    do {
+        cout << "\n===== Inventory Management System =====" << endl;
+        cout << "1. Add Item" << endl;
+        cout << "2. Display All Items" << endl;
+        cout << "3. Search Item by ID" << endl;
+        cout << "4. Update Item Quantity" << endl;
+        cout << "5. Delete Item" << endl;
+        cout << "6. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: {
+                cout << "\nEnter Item ID: ";
+                cin >> inventory[count].id;
+                cout << "Enter Item Name: ";
+                cin.ignore();
+                getline(cin, inventory[count].name);
+                cout << "Enter Quantity: ";
+                cin >> inventory[count].quantity;
+                cout << "Enter Price: ";
+                cin >> inventory[count].price;
+                count++;
+                cout << "Item added successfully!" << endl;
+                break;
+            }
+
+            case 2: {
+                cout << "\n===== All Items =====" << endl;
+                for (int i = 0; i < count; i++) {
+                    cout << "ID: " << inventory[i].id << endl;
+                    cout << "Name: " << inventory[i].name << endl;
+                    cout << "Quantity: " << inventory[i].quantity << endl;
+                    cout << "Price: Rs. " << inventory[i].price << endl;
+                    cout << "-----------------------------" << endl;
+                }
+                break;
+            }
+
+            case 3: {
+                int id;
+                cout << "\nEnter Item ID to search: ";
+                cin >> id;
+                bool found = false;
+                for (int i = 0; i < count; i++) {
+                    if (inventory[i].id == id) {
+                        cout << "\nItem Found!" << endl;
+                        cout << "ID: " << inventory[i].id << endl;
+                        cout << "Name: " << inventory[i].name << endl;
+                        cout << "Quantity: " << inventory[i].quantity << endl;
+                        cout << "Price: Rs. " << inventory[i].price << endl;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) cout << "No item found with ID " << id << endl;
+                break;
+            }
+
+            case 4: {
+                int id, newQty;
+                cout << "\nEnter Item ID to update quantity: ";
+                cin >> id;
+                bool found = false;
+                for (int i = 0; i < count; i++) {
+                    if (inventory[i].id == id) {
+                        cout << "Enter new quantity: ";
+                        cin >> newQty;
+                        inventory[i].quantity = newQty;
+                        cout << "Quantity updated successfully!" << endl;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) cout << "No item found with ID " << id << endl;
+                break;
+            }
+
+            case 5: {
+                int id;
+                cout << "\nEnter Item ID to delete: ";
+                cin >> id;
+                bool found = false;
+                for (int i = 0; i < count; i++) {
+                    if (inventory[i].id == id) {
+                        for (int j = i; j < count - 1; j++) {
+                            inventory[j] = inventory[j + 1]; // Shift records
+                        }
+                        count--;
+                        cout << "Item deleted successfully!" << endl;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) cout << "No item found with ID " << id << endl;
+                break;
+            }
+
+            case 6:
+                cout << "Exiting program. Goodbye!" << endl;
+                break;
+
+            default:
+                cout << "Invalid choice. Please try again." << endl;
+        }
+    } while (choice != 6);
+
+    return 0;
+}

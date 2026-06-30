@@ -1,0 +1,65 @@
+// Marksheet Generation System
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Student {
+    int rollNo;
+    string name;
+    int marks[5];   // marks for 5 subjects
+    int total;
+    float percentage;
+    char grade;
+};
+
+int main() {
+    Student s;
+    string subjects[5] = {"Math", "Science", "English", "Computer", "History"};
+
+    cout << "===== Marksheet Generation System =====" << endl;
+
+    // Input student details
+    cout << "Enter Roll No: ";
+    cin >> s.rollNo;
+    cout << "Enter Name: ";
+    cin.ignore();
+    getline(cin, s.name);
+
+    // Input marks
+    s.total = 0;
+    for (int i = 0; i < 5; i++) {
+        cout << "Enter marks in " << subjects[i] << ": ";
+        cin >> s.marks[i];
+        s.total += s.marks[i];
+    }
+
+    // Calculate percentage
+    s.percentage = (float)s.total / 5;
+
+    // Assign grade
+    if (s.percentage >= 90)
+        s.grade = 'A';
+    else if (s.percentage >= 75)
+        s.grade = 'B';
+    else if (s.percentage >= 60)
+        s.grade = 'C';
+    else if (s.percentage >= 40)
+        s.grade = 'D';
+    else
+        s.grade = 'F';
+
+    // Display marksheet
+    cout << "\n===== Marksheet =====" << endl;
+    cout << "Roll No: " << s.rollNo << endl;
+    cout << "Name: " << s.name << endl;
+    cout << "-----------------------------" << endl;
+    for (int i = 0; i < 5; i++) {
+        cout << subjects[i] << ": " << s.marks[i] << endl;
+    }
+    cout << "-----------------------------" << endl;
+    cout << "Total Marks: " << s.total << endl;
+    cout << "Percentage: " << s.percentage << "%" << endl;
+    cout << "Grade: " << s.grade << endl;
+
+    return 0;
+}
